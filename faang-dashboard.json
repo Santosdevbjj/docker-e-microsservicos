@@ -1,0 +1,78 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "FAANG-Level Microservices Dashboard",
+    "tags": ["faang", "microservices", "observability"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "Users Service - Requests Latency",
+        "targets": [
+          {
+            "expr": "rate(http_server_requests_seconds_sum{job=\"users-service\"}[1m]) / rate(http_server_requests_seconds_count{job=\"users-service\"}[1m])",
+            "legendFormat": "Latency (s)"
+          }
+        ],
+        "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 }
+      },
+      {
+        "type": "graph",
+        "title": "Products Service - Error Rate",
+        "targets": [
+          {
+            "expr": "rate(http_server_requests_seconds_count{job=\"products-service\",status!~\"2..\"}[5m])",
+            "legendFormat": "Errors"
+          }
+        ],
+        "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 }
+      },
+      {
+        "type": "graph",
+        "title": "Payments Service - Throughput",
+        "targets": [
+          {
+            "expr": "rate(http_server_requests_seconds_count{job=\"payments-service\"}[1m])",
+            "legendFormat": "Requests/sec"
+          }
+        ],
+        "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 }
+      },
+      {
+        "type": "graph",
+        "title": "PostgreSQL Connections",
+        "targets": [
+          {
+            "expr": "pg_stat_activity_count{job=\"postgres\"}",
+            "legendFormat": "Active Connections"
+          }
+        ],
+        "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 }
+      },
+      {
+        "type": "graph",
+        "title": "CPU Usage per Pod",
+        "targets": [
+          {
+            "expr": "rate(container_cpu_usage_seconds_total{namespace=\"default\"}[1m])",
+            "legendFormat": "{{pod}}"
+          }
+        ],
+        "gridPos": { "x": 0, "y": 16, "w": 12, "h": 8 }
+      },
+      {
+        "type": "graph",
+        "title": "Memory Usage per Pod",
+        "targets": [
+          {
+            "expr": "container_memory_usage_bytes{namespace=\"default\"}",
+            "legendFormat": "{{pod}}"
+          }
+        ],
+        "gridPos": { "x": 12, "y": 16, "w": 12, "h": 8 }
+      }
+    ],
+    "schemaVersion": 36,
+    "version": 1
+  }
+}
