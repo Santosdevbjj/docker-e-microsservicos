@@ -337,7 +337,9 @@ Por fim, entender a **diferença entre `ClusterIP` e `LoadBalancer`** no K8s foi
 ## 👨‍💻 Autor
 
 **Sergio Santos**
-🔗 
+
+
+**Portfolio:** https://portfoliosantossergio.vercel.app
 
 ---
 
